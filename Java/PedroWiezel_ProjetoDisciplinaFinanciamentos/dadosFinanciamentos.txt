@@ -1,0 +1,29 @@
+Valor do imóvel: 500000.0
+Valor total do financiamento: 513766.6666666666
+Valor da parcela mensal: 4281.388888888889
+Tamanho do terreno: 100.0
+Tamanho da área construída: 100.0
+-------------------------
+Valor do imóvel: 3000000.0
+Valor total do financiamento: 3041300.0000000005
+Valor da parcela mensal: 8448.055555555557
+Tamanho do terreno: 400.0
+Tamanho da área construída: 200.0
+-------------------------
+Valor do imóvel: 500000.0
+Valor total do financiamento: 792904.4212905716
+Valor da parcela mensal: 6607.536844088097
+Andar do apartamento: 15
+Número de vagas na garagem: 2
+-------------------------
+Valor do imóvel: 6500000.0
+Valor total do financiamento: 6740499.999999999
+Valor da parcela mensal: 112341.66666666666
+Zona: RESIDENCIAL
+-------------------------
+Valor do imóvel: 100000.0
+Valor total do financiamento: 110016.66666666667
+Valor da parcela mensal: 916.8055555555555
+Tamanho do terreno: 100.0
+Tamanho da área construída: 100.0
+-------------------------
