@@ -1,3 +1,7 @@
+#ALUNOS: PEDRO WIEZEL, CAROLYNE LUZ
+#GRUPO: 425
+#DISCIPLINA: PUCPR - INTERNET DAS COISAS EM UM MUNDO CONECTADO
+
 import time
 from wifi_lib import conecta
 from umqttsimple import MQTTClient
@@ -7,8 +11,6 @@ from i2c_lcd import I2cLcd
 
 TEMP_TOPICO = "pucpr/iot/temperatura"
 UMIDADE_TOPICO = "pucpr/iot/umidade"
-TOPICO_GERAL = "pucpr/#"
-mensagens_gerais = 0
 
 red_led = Pin(4, Pin.OUT) 
 green_led = Pin(5, Pin.OUT)
@@ -32,29 +34,27 @@ def imprime_mensagem(linha1, linha2):
     time.sleep(1)
 
 def processa_dados(topico, mensagem):
-    mensagem = mensagem.decode()
     topico = topico.decode()
+    mensagem = mensagem.decode()
 
     if topico == TEMP_TOPICO:
-        if int(valor) < 30:
+        if int(mensagem) < 30:
             red_led.off()
             green_led.on()
-            imprime_status("Temperatura OK", valor)
+            imprime_status("Temperatura OK", mensagem)
         else:
             red_led.on()
             green_led.off()
-            imprime_status("Temperatura ALTA", valor)
+            imprime_status("Temperatura ALTA", mensagem)
     elif topico == UMIDADE_TOPICO:
-        if int(valor) < 70:
+        if int(mensagem) < 70:
             red_led.on()
             green_led.off()
-            imprime_status("Umidade BAIXA", valor)
+            imprime_status("Umidade BAIXA", mensagem)
         else:
             red_led.off()
             green_led.on()
-            imprime_status("Umidade OK", valor)
-    else:
-        imprime_mensagem("Spam: ", mensagem)
+            imprime_status("Umidade OK", mensagem)
 
 def conecta_wifi():
     imprime_mensagem("Rede Wi-Fi:", "conectando...")
@@ -64,23 +64,18 @@ def conecta_wifi():
     imprime_mensagem("Rede Wi-Fi:", "conectada!")
     return station
 
-def main():
-    conecta_wifi()
-    client = MQTTClient(mqtt_client_id, mqtt_server, mqtt_port)
+conecta_wifi()
+client = MQTTClient(mqtt_client_id, mqtt_server, mqtt_port)
 
-    imprime_mensagem("HiveMQ Broker:", "conectando...")
-    client.connect()
-    client.set_callback(processa_dados)
-    imprime_mensagem("HiveMQ Broker:", "conectado!")
+imprime_mensagem("HiveMQ Broker:", "conectando...")
+client.connect()
+client.set_callback(processa_dados)
+imprime_mensagem("HiveMQ Broker:", "conectado!")
 
-    client.subscribe(TEMP_TOPICO)
-    client.subscribe(UMIDADE_TOPICO)
-    client.subscribe(TOPICO_GERAL)
-    imprime_mensagem("Esperando por", "dados do broker")
+client.subscribe(TEMP_TOPICO)
+client.subscribe(UMIDADE_TOPICO)
+imprime_mensagem("Esperando por", "dados do broker")
 
-    while True:
-        client.check_msg()
-        time.sleep(0.1)
-
-if __name__ == "__main__":
-    main()
+while True:
+    client.check_msg()
+    time.sleep(0.1)

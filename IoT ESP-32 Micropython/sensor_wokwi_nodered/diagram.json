@@ -6,7 +6,7 @@
     {
       "type": "board-esp32-devkit-c-v4",
       "id": "esp",
-      "top": -146.8,
+      "top": -108.4,
       "left": -359.44,
       "rotate": 180,
       "attrs": { "env": "micropython-20231227-v1.22.0" }
@@ -14,22 +14,22 @@
     {
       "type": "wokwi-led",
       "id": "led1",
-      "top": -205.2,
-      "left": -341.8,
+      "top": -176.4,
+      "left": -322.6,
       "attrs": { "color": "red" }
     },
     {
       "type": "wokwi-led",
       "id": "led2",
-      "top": -205.2,
-      "left": -313,
+      "top": -176.4,
+      "left": -293.8,
       "attrs": { "color": "green" }
     },
     {
       "type": "wokwi-lcd2004",
       "id": "lcd2",
-      "top": -137.6,
-      "left": -234.4,
+      "top": -99.2,
+      "left": -244,
       "attrs": { "pins": "i2c" }
     }
   ],
